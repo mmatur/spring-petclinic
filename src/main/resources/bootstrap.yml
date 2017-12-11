@@ -1,0 +1,23 @@
+# Consul
+spring:
+  cloud:
+    inetutils:
+      preferred-networks:
+        - ${NETWORK:eth0}
+    consul:
+      config:
+        enable: false
+      host: ${CONSUL_HOST:127.0.0.1}
+      port: 8500
+      discovery:
+        serviceName: ${SERVICE_NAME:petclinic}
+        instanceId: ${spring.application.name}:${spring.application.instance.id:${random.value}}
+        healthCheckPath: /actuator/health
+        healthCheckInterval: 15s
+        enabled: true
+        register: true
+        preferIpAddress: true
+        tags:
+          - traefik.enable=true
+          - traefik.frontend.rule=Host:${spring.cloud.consul.discovery.serviceName}.test.demo
+          - traefik.tags=${TAGS:petclinic}

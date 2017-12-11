@@ -17,15 +17,18 @@
 package org.springframework.samples.petclinic;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * PetClinic Spring Boot Application.
- * 
+ *
  * @author Dave Syer
  *
  */
 @SpringBootApplication
+@EnableDiscoveryClient
 public class PetClinicApplication {
 
     public static void main(String[] args) throws Exception {
